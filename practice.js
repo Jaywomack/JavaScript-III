@@ -431,7 +431,10 @@ const hobbit2 = {
             //VVVVVV is left of the dot so the 'this' keyword points to it <<
 console.log(hobbit1.cook()) //Implicit binding points to the hobbit because it is to the left of the dot
 console.log(hobbit2.cook())
-
+/*****************************************************************************************
+ * Explicit Binding
+ * 
+ */
 //Explicit binding //for functions//
 const person = {
     name: 'Ruby'
@@ -447,9 +450,26 @@ console.log(introduction.call(person, 'HTML','CSS','JS'));
 //While the syntax of this function is almost identical to that of apply(), the fundamental difference is that call() accepts an argument list, while apply() accepts a single array of arguments.
 // Call is easier to use if you have individual elements 
 
-const skills = ['HTML','CSS','JS'];
+const skills = ['HTML','CSS','JS']; //person is the 'this' keyword in this example
 console.log(introduction.apply(person, skills));
+//.apply needs to be passed an array. It is better for chunks of data.
+
+//  ... is the spread operator. Spread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+//Example
+function myFunction(x, y, z) { }
+var args = [0, 1, 2];
+myFunction(...args);// will log the args array
+
+//Bind is used to save the 'this' keyword for later
+
+//The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+//example bind
+const useLater = introduction.bind(person, ...skills);
+
+console.log(useLater());
 
 
-
-
+/****************************************************************************************************
+ * JavaScript III
+ * Guided Project Prototypes
+ */
