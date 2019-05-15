@@ -473,3 +473,47 @@ console.log(useLater());
  * JavaScript III
  * Guided Project Prototypes
  */
+
+ function Parent(attributes) {
+     this.newAge = attributes.age;
+     this.newName = attributes.name;
+     this.newLocation = attributes.location;
+     this.newPhrase = attributes.phrase;
+    //  this.speak = function() {          //this method is available on all of the constructed objects without having to write it on the                                       object but is very memory intensive so prototypes need to be used
+    //      return `${this.newName} says ${this.newPhrase}`;
+    //  }
+    console.log(this)
+ }
+
+ //PROTOTYPE/////By using prototype the objects created by the constructor will have access to the method without the memory issues
+ Parent.prototype.speak = function() {
+     return `${this.name} says ${this.phrase}`;
+ }
+
+ const fred = new Parent( {
+     age: 35,
+     name: 'Fred',              //without constructor functions every person object would need to be created individually
+     location: 'Bedrock',
+     phrase: 'Yabba dabba do',
+     
+
+ })
+
+ const willma = new Parent( {
+    age: 37,
+    name: 'Willma',              //without constructor functions every person object would need to be created individually
+    location: 'Bedrock',
+    phrase: 'Fred',
+    
+})
+
+//higher order function
+let getAverage = function(total, div, cb) {
+    return cb(total / div)
+}
+
+getAverage(100, 4, function()) {
+    console.log(getAverage)
+})
+
+
