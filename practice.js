@@ -205,44 +205,250 @@
 // //     calories: 100
 // // });
 // console.log(banana.shipped('hawaii'))
-function Fruit(attrs) {
-    this.type = attrs.type;
-    this.name = attrs.name;
-    this.isRipe = attrs.isRipe;
-    this.calories = attrs.calories;
-}
-                //by having this shipped method on the prototype, rather than the object, memory issues are avoided
-Fruit.prototype.shipped = function (destination) {
-    console.log(`Shipping ${this.name} to ${destination}`);
-}
+// function Fruit(attrs) {
+//     this.type = attrs.type;
+//     this.name = attrs.name;
+//     this.isRipe = attrs.isRipe;
+//     this.calories = attrs.calories;
+// }
+// //by having this shipped method on the prototype, rather than the object, memory issues are avoided
+// Fruit.prototype.shipped = function (destination) {
+//     console.log(`Shipping ${this.name} to ${destination}`);
+// }
 
-Fruit.prototype.calculateCals = function () {
-    console.log(`Calories in ${this.name} are ${this.calories * 200}`);
-}
+// Fruit.prototype.calculateCals = function () {
+//     console.log(`Calories in ${this.name} are ${this.calories * 200}`);
+// }
 
-function Banana(bananaAttrs) {   //Everytime we create a banana we will have all of the attributes of the Fruit parent above
-    Fruit.call(this, bananaAttrs);//We will also have access to the Fruit.prototype functions
-    this.doMonkeysLikeIt = bananaAttrs.doMonkeysLikeIt;
-}
+// function Banana(bananaAttrs) { //Everytime we create a banana we will have all of the attributes of the Fruit parent above
+//     Fruit.call(this, bananaAttrs); //We will also have access to the Fruit.prototype functions
+//     this.doMonkeysLikeIt = bananaAttrs.doMonkeysLikeIt;
+// }
 
-Banana.prototype.checkIfMokeysLikeIt = function() {
-    if(this.doMonkeysLikeIt) {
-        return true;
-    } else {
-        return false;
+// Banana.prototype = Object.create(Fruit.prototype);
+
+// Banana.prototype.checkIfMokeysLikeIt = function () {
+//     if (this.doMonkeysLikeIt) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
+
+// function Kiwi(kiwiAttrs) {
+//     Fruit.call(this, kiwiAttrs);
+//     this.fuzzy = kiwiAttrs.fuzzy;
+// }
+
+// Kiwi.prototype.checkIfFuzzy = function () {
+//     if (this.isFuzzy) {
+//         return true;
+//     } else {
+//         return false;
+ 
+
+// Kiwi.prototype = Object.create(Fruit.prototype);
+
+
+
+
+
+// const newBanana = new Banana({
+//     doMonkeysLikeIt: true,
+//     name: 'banana',
+//     isRipe: false,
+//     calories: 0.1
+
+// });
+
+// const newKiwi = new Kiwi({
+//     isFuzzy: true,
+//     type: 'Tree',
+//     name: 'Kiwi',
+//     isRipe: false,
+//     calories: 0.7
+
+// })
+
+// console.log(newBanana)
+// console.log(newKiwi.shipped)
+// console.log(newBanana.checkIfMokeysLikeIt())
+// console.log(newKiwi.checkIfFuzzy());
+// }
+
+// Kiwi.prototype = Object.create(Fruit.prototype);
+
+
+
+
+
+// const newBanana = new Banana({
+//     doMonkeysLikeIt: true,
+//     name: 'banana',
+//     isRipe: false,
+//     calories: 0.1
+
+// });
+
+// const newKiwi = new Kiwi({
+//     isFuzzy: true,
+//     type: 'Tree',
+//     name: 'Kiwi',
+//     isRipe: false,
+//     calories: 0.7
+
+// })
+
+// console.log(newBanana)
+// console.log(newKiwi.shipped)
+// console.log(newBanana.checkIfMokeysLikeIt())
+// console.log(newKiwi.checkIfFuzzy());
+
+// Kiwi.prototype = Object.create(Fruit.prototype);
+
+
+
+
+
+// const newBanana = new Banana({
+//     doMonkeysLikeIt: true,
+//     name: 'banana',
+//     isRipe: false,
+//     calories: 0.1
+
+// });
+
+// const newKiwi = new Kiwi({
+//     isFuzzy: true,
+//     type: 'Tree',
+//     name: 'Kiwi',
+//     isRipe: false,
+//     calories: 0.7
+
+// })
+
+// console.log(newBanana)
+// console.log(newKiwi.shipped)
+// console.log(newBanana.checkIfMokeysLikeIt())
+// console.log(newKiwi.checkIfFuzzy());
+
+/*********************************************************************
+ * Prototypes Challenge
+ */
+/* ==== Prototypes Challenge
+
+  1. Study the console.log() and object method invocations at the bottom of the page. Update the Animal and Dog constructors so that the logs and methods match the commented result next to them.
+  
+  2. Stretch Challenge: Create a new constructor function called Cat. Add properties and a method unique to a cat.  Make sure cat inherits from Animal so you can use all of the properties and methods found there.
+
+
+You can check your work here:
+
+https://codepen.io/lambdaschool/pen/yxjRJa
+
+*/
+
+
+// function Animal(attributes) {
+//     this.animalCommonName = attributes.animalCommonName
+//     this.weight = attributes.weight;
+//     this.height = attributes.height;
+//     this.food = attributes.food;
+// }
+
+// Animal.prototype.eat = function () {
+//     console.log(`The ${this.animalCommonName} eats ${this.food}`);
+// }
+
+// function Dog(dogAttributes) {
+//     // Connect the attributes so we can use the this keyword
+//     Animal.call(this, dogAttributes);
+//     this.name = dogAttributes.name;
+//     this.bark = dogAttributes.bark;
+// }
+// // Set up our __proto__ inheritance to Animal
+// Dog.prototype = Object.create(Animal.prototype);
+
+// //Dog prototype speak
+// Dog.prototype.speak = function () {
+//     console.log(`${this.name} says: ${this.bark}`)
+// }
+
+// const dog = new Dog({
+//     'name': 'Dr. Doggo',
+//     'animalCommonName': "dog",
+//     'weight': 40,
+//     'height': 12,
+//     'food': 'meat',
+//     'bark': 'Woof!'
+// });
+
+// console.log(dog.animalCommonName); // "dog"
+// dog.eat(); // "The dog eats meat"
+// dog.speak(); // "Dr. Doggo says: Woof!"
+
+/***************************************************
+ * JavaScript III Lecture Josh Knell and WTF is'this' notes
+ * Arrow functions and the 'this' cause the this keyword to point to the window **Do not use => with 'this'**
+ */
+
+
+//Window binding is like a forest of trees, not sure which one we are 
+
+//pointing at, so we point at the forest
+ console.log(this) //global this
+
+ //The this keyword always tries to point towards the window in any place
+
+ function hello(name) {
+     'use strict'; //use strict prevents the global binding being used accidentally
+     console.log(this);
+     return `Hello ${name}`
+ }
+
+ console.log(hello('web20'));
+
+//Implicit Binding (automatic) with objects and methods
+//Implicit Binding only occurs with objects, not functions
+
+const hobbit1 = {
+    name: 'Samwise',
+    age: 122,
+    food: 'taters',
+    cook: function() {
+        return `${this.name} loves to cook ${this.food}`;
     }
 }
 
-const newBanana = new Banana({
-    doMonkeysLikeIt: true,
-    name: 'banana',
-    isRipe: false,
-    calories: 0.1
+const hobbit2 = {
+    name: 'Samwise',
+    age: 111,
+    food: 'salt',
+    cook: function() {
+        return `${this.name} loves to cook ${this.food}`;
+    }
+}
+            //VVVVVV is left of the dot so the 'this' keyword points to it <<
+console.log(hobbit1.cook()) //Implicit binding points to the hobbit because it is to the left of the dot
+console.log(hobbit2.cook())
 
-});
+//Explicit binding //for functions//
+const person = {
+    name: 'Ruby'
+}
 
-console.log(newBanana)
+function introduction(html,css,js) {
+    return `Hello, my name is ${this.name} and I like to program in : ${html}, ${css}, ${js}`;
+}
+//Using .call
+                            //person here. becomes the 'this' keyword
+console.log(introduction.call(person, 'HTML','CSS','JS')); 
 
+//While the syntax of this function is almost identical to that of apply(), the fundamental difference is that call() accepts an argument list, while apply() accepts a single array of arguments.
+// Call is easier to use if you have individual elements 
+
+const skills = ['HTML','CSS','JS'];
+console.log(introduction.apply(person, skills));
 
 
 
