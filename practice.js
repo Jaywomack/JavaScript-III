@@ -387,7 +387,7 @@ https://codepen.io/lambdaschool/pen/yxjRJa
 // dog.eat(); // "The dog eats meat"
 // dog.speak(); // "Dr. Doggo says: Woof!"
 
-/***************************************************
+/**********************************************************************************************
  * JavaScript III Lecture Josh Knell and WTF is'this' notes
  * Arrow functions and the 'this' cause the this keyword to point to the window **Do not use => with 'this'**
  */
@@ -408,7 +408,7 @@ https://codepen.io/lambdaschool/pen/yxjRJa
 
  console.log(hello('web20'));
 
-//Implicit Binding (automatic) with objects and methods
+//Implicit Binding (automatic) with objects
 //Implicit Binding only occurs with objects, not functions
 
 const hobbit1 = {
@@ -490,6 +490,16 @@ console.log(useLater());
      return `${this.name} says ${this.phrase}`;
  }
 
+ Parent.prototype.location = function() {
+    return `${this.name} is from ${this.location}`;
+}
+//This sets up the __proto__ to inherit the prot0type from the parent
+Child.prototype = Object.create(Parent.prototype) //this links all of the parent prototypes to the child.
+
+Child.prototype.play = function(){
+    return `${this.newName} can play with ${this.newToy}`
+}
+
  const fred = new Parent( {
      age: 35,
      name: 'Fred',              //without constructor functions every person object would need to be created individually
@@ -507,13 +517,60 @@ console.log(useLater());
     
 })
 
-//higher order function
-let getAverage = function(total, div, cb) {
-    return cb(total / div)
+function Child(childAttributes) {
+    console.log(childAttributes);
+    Parent.call(this, childAttributes)
+    this.newToy = childAttributes.toy;
 }
 
-getAverage(100, 4, function()) {
-    console.log(getAverage)
-})
+const pebbles = new Child({
+    age: 2,
+    name: 'Pebbles',
+    location: 'Bedrock',
+    phrase: 'MA MA',
+    toy: 'Rock Doll'
+});
+
+
+console.log(pebbles.play())
+/***********************************************************************
+ * End of Josh Knells lecture
+ */
+
+
+ /*****************************************Dan Sherman Lecture
+  * 
+  * 'this' Keyword and prototypical inheritance and Constructor Functions
+  * Higher order function review
+  */
+ //Higher order function
+ 
+ //higher order function for Dan Sherman!
+ let getAverage = function(total, div, cb) {
+     return cb(total / div)
+ }
+ 
+ getAverage(100, 4, function(average){
+     console.log(average)
+ })
+ function compute(param1, param2, callback) { // This is a high order function
+    return callback(param1, param2);
+ };
+
+ function add(a, b) {
+     return console.log(a + b)       //normal function
+ }
+
+ compute(4, 4, add);
+
+
+
+
+
+
+
+
+
+
 
 
